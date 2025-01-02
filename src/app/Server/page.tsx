@@ -1,12 +1,20 @@
+interface Ibook{
+  id:number,
+  name:string,
+  type:string,
+  available:boolean,
+}
+
+
 async function Books(){
-  let response = await fetch("https://simple-books-api.glitch.me/books");
-response=await response.json();
-return response;
+  const response = await fetch("https://simple-books-api.glitch.me/books");
+const data:Ibook[]=await response.json();
+return data;
   
 }
 import Header from "../components/Header"
 export default async function  page(){
-  let books = await Books();
+  const books = await Books();
   return(  <div className="max-w-screen-xl mx-auto p-6 py-10 space-y-10">
     <Header />
       <h1 className="text-2xl font-bold text-center mb-4">Fetching Data by Server</h1>
